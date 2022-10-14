@@ -51,6 +51,6 @@ app.use(routes);
 // });
 // module.exports = Imageupload;
 
-app.listen(1000,() => {
+app.listen(process.env.PORT,() => {
     console.info('server connected')
 })
