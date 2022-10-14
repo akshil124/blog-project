@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Josefin Slab' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css" integrity="sha512-NXUhxhkDgZYOMjaIgd89zF2w51Mub53Ru3zCNp5LTlEzMbNNAjTjDbpURYGS5Mop2cU4b7re1nOIucsVlrx9fA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js" integrity="sha512-lOrm9FgT1LKOJRUXF3tp6QaMorJftUjowOWiDcG5GFZ/q7ukof19V0HKx/GWzXCdt9zYju3/KhBNdCLzK8b90Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Dashboard Page</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="row justify-content-betwwen">
+                <div class="logo">
+                    <img src="/images/logo.png" alt="logo">
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/user/register">Register</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+<main>
+<section class="bg">
+    <div class="container">
+        <div class="row align-item-center">
+            <div class="bg-img">
+                <img src="/images/bg-img.jpg" alt="bg-img">
+            </div>
+            <div class="bg-content">
+                <h2>Travelling around The World</h2>
+                <span>& Sharing Stories</span>
+                <p>The world is filled with endless beauty and adventures. It's my dream to explore every corner of this incredible planet. Join me on my journey across roads, seas, and skies.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="my-blog">
+    <div class="container">
+        <h2 style="padding-bottom: 30px;">Visit Our Website Now</h2>
+        <h5 style="text-align: center; font-size: 20px;">Please Register For Visit Our Site.</h5>
+        <span></span>
+    </div>
+</section>
+
+<section class="my-blog">
+    <div class="container">
+        <h2 style="padding-bottom: 50px;">My Recent Blog</h2>
+        <div class="row">
+        <% data.forEach((i) => { %>
+            <div class="blog">
+                <div class="blog-img">
+                    <img src="<%= i.blogimage %>" alt="bg-img">
+                </div>
+                <div class="blog-content">
+                    <h3 style="display: inline-block;"><%= i.blogheading %></h3>
+                    <span style="float: right;"><%= i.blogDate %></span>
+                    <p style="padding: 10px 0px 15px; font-weight: 600;"><%= i.blogsubheading  %></p>
+                    <p><%= i.blogContent %></p>
+                    <h4>Author : </h4><span><%= i.userid.firstname + " " + i.userid.lastname %></span>
+                    <% if(i.userid.id == userid) { %> 
+                        <a href="/deleteblog/<%= i._id %>">Delete Blog</a>
+                    <% } %>
+                </div>
+                <h5>Add your coments here</h5>
+
+                <% if(auth){ %>
+                    <form  class="commentbox" action="/addcomment" method="post">
+                        <input type="hidden" name="blogid" value="<%= i._id  %>">
+                        <input type="text" name="content" placeholder="Add Your Comment">
+                        <button type="submit">Submit</button>
+                    </form>
+                <% } %>
+                <ul>
+                    <% i.comments.forEach((j) => { %> 
+                        <li><%= j.content %></li>
+                        <h6>Author :- <%= j.userid.firstname + " " + j.userid.lastname %></h6>
+                        <% if( j.userid.id == userid ){ %>
+                            <a href="/deletecomment/<%= j.id %>">Delete Comment</a>
+                        <% } %>
+                    <% }) %>
+                </ul>
+            </div>
+        <% }) %>
+        </div>
+    </div>
+</section>
+       
+</main>
+</body>
+
+</html>
+<script>
+    <% if(flash.success && flash.success.length > 0){ %>
+      new Noty({
+        text : '<%= flash.success %>',
+        type : 'success',
+        timeout : 1500,
+        theme : 'relax'
+      }).show()
+      <% } %>
+  
+      <% if(flash.error && flash.error.length > 0){ %>
+      new Noty({
+        text : '<%= flash.error %>',
+        type : 'error',
+        timeout : 1500,
+        theme : 'relax'
+      }).show()
+      <% } %>
+  
+  </script>

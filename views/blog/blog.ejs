@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Josefin Slab' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css" integrity="sha512-NXUhxhkDgZYOMjaIgd89zF2w51Mub53Ru3zCNp5LTlEzMbNNAjTjDbpURYGS5Mop2cU4b7re1nOIucsVlrx9fA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js" integrity="sha512-lOrm9FgT1LKOJRUXF3tp6QaMorJftUjowOWiDcG5GFZ/q7ukof19V0HKx/GWzXCdt9zYju3/KhBNdCLzK8b90Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Blog Page</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="row justify-content-betwwen">
+                <div class="logo">
+                    <img src="/images/logo.png" alt="logo">
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="">Blog</a></li>
+                        <li><a href="">Contact</a></li>
+                        <li><a href="">About Us</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+<main>
+
+    <section class="add-blog">
+        <div class="container">
+            <div class="row">
+                <form action="/createblog" method="post">
+                    <label>Blog Heading</label>
+                    <input type="text" name="blogheading" placeholder="Enter Blog Heading">
+                    <br><br>
+                    <label>Blog Sub-Heading</label>
+                    <input type="text" name="blogsubheading" placeholder="Enter Blog Sub-Heading">
+                    <br><br>
+                    <label>Blog Date</label>
+                    <input type="text" name="blogDate" placeholder="Enter Blog Date">
+                    <br><br>
+                    <label>Blog content</label>
+                    <input type="text" name="blogContent" placeholder="Enter Blog Content">
+                    <br><br>
+                    <label>Blog Image</label>
+                    <input type="text" name="blogimage" placeholder="Enter Image URL">
+                    <br><br><br>
+                    <!-- <input type="file" name="image" style="padding-left: 0px;"> -->
+                    <br>
+                    <button class="submit" type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+</html>
+
+<script>
+    <% if (flash.success && flash.success.length > 0) { %>
+    new Noty({
+      text: '<%= flash.success %>',
+      type: 'success',
+      timeout: 1500,
+      theme: 'relax'
+    }).show()
+    <% } %>
+    
+    <% if (flash.error && flash.error.length > 0) { %>
+    new Noty({
+      text: '<%= flash.error %>',
+      type: 'error',
+      timeout: 1500,
+      theme: 'relax'
+    }).show()
+    <% } %>
+
+</script>

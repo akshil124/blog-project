@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/style.css">
+    
+    <title>Upadate Profile</title>
+</head>
+<body>
+    <form class="reg-form" action="/user/updateprofile" method="post">
+        <h2 style="padding-bottom: 30px;">Update User Profile</h2>
+        <input type="hidden" name="id" placeholder="id" value="<%= id %>"><br><br>
+        <input type="text" name="firstName" placeholder="firstName" value="<%= firstName %>">
+        <br><br>
+        <input type="text" name="lastname" placeholder="lastname" value="<%= lastname %>">
+        <br><br>
+        <input type="email" name="email" placeholder="email" value="<%= email %>">
+        <br><br>
+        <input type="text" name="password" placeholder="password" ><br><br>
+        <br><br>
+        <input style="background-color: black; color:#fff" type="submit">
+    </form>
+</body>
+
+</html>

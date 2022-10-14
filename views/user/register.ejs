@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css" integrity="sha512-NXUhxhkDgZYOMjaIgd89zF2w51Mub53Ru3zCNp5LTlEzMbNNAjTjDbpURYGS5Mop2cU4b7re1nOIucsVlrx9fA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js" integrity="sha512-lOrm9FgT1LKOJRUXF3tp6QaMorJftUjowOWiDcG5GFZ/q7ukof19V0HKx/GWzXCdt9zYju3/KhBNdCLzK8b90Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Document</title>
+</head>
+<body>
+    <form class="reg-form" action="/user/register" method="post">
+        <h2 style="padding-bottom: 30px;">Register User</h2>
+        <input type="text" name="firstname" placeholder="Enter First Name">
+        <br><br>
+        <input type="text" name="lastname" placeholder="Enter Last Name">
+        <br><br>
+        <input type="text" name="email" placeholder="Enter Email">
+        <br><br>
+        <input type="text" name="password" placeholder="Enter Password">
+        <br><br>
+        <input style="background-color: black; color:#fff" type="submit">
+        <br><br><br><br>
+        <h5 style="font-size: 16px;" >Already Have An Account ?</h5>
+        <a href="/user/login">Sign Up</a>
+        <br><br>
+        <h3 style="font-size: 16px;">Or Register With</h3>
+        <a style="text-transform: capitalize;" href="/user/googleLogin">Google</a>
+    </form>
+</body>
+
+</html>
+
+<script>
+    <% if (flash.success && flash.success.length > 0) { %>
+    new Noty({
+      text: '<%= flash.success %>',
+      type: 'success',
+      timeout: 1500,
+      theme: 'relax'
+    }).show()
+    <% } %>
+    
+    <% if (flash.error && flash.error.length > 0) { %>
+    new Noty({
+      text: '<%= flash.error %>',
+      type: 'error',
+      timeout: 1500,
+      theme: 'relax'
+    }).show()
+    <% } %>
+
+</script>
